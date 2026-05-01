@@ -8,12 +8,10 @@ def get_requirements():
 
 setup(
     name='captacity',
-    version='0.3.1',
+    version='0.3.1+thaag3-nbwhisper',
     packages=find_packages(),
     install_requires=get_requirements(),
-    extras_require = {
-        'local_whisper':  ["openai-whisper"],
-    },
+    extras_require = {},
     package_data={
         'captacity': ['assets/**/*'],
     },

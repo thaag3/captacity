@@ -114,17 +114,13 @@ def get_font_path(font):
     return font
 
 def detect_local_whisper(print_info):
-    try:
-        import whisper
-        use_local_whisper = True
-        if print_info:
-            print("Using local whisper model...")
-    except ImportError:
-        use_local_whisper = False
-        if print_info:
-            print("Using OpenAI Whisper API...")
-
-    return use_local_whisper
+    # Anton fork: nb-whisper-large is always reachable via HTTP.
+    # transcribe_locally and transcribe_with_api both go through nb-whisper, so the choice
+    # is cosmetic — keep the parameter for API compatibility but always return False so the
+    # caller goes through transcribe_with_api (the canonical nb-whisper path).
+    if print_info:
+        print("Anton fork: routing transcription to nb-whisper-large…")
+    return False
 
 def add_captions(
     video_file,
